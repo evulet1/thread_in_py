@@ -1,5 +1,5 @@
 import time
-from threading  import Thread
+from concurrent.futures import ThreadPoolExecutor
 
 def ask_user():
     start = time.time()
@@ -21,10 +21,11 @@ complex_calculation()
 print(f'Single thread total time:{time.time() - start}')
 
 
-thread1 = Thread(target = complex_calculation)
-thread2 = Thread(target=ask_user)
-
 start = time.time()
+
+with ThreadPoolExecutor(max_workers=2) as pool:
+    pool.submit(complex_calculation)
+    pool.submit(ask_user)
 
 thread1.start()
 thread2.start()
