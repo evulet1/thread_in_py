@@ -1,5 +1,5 @@
 import time
-from threading  import Thread
+from _multiprocessing import Proccess
 
 def ask_user():
     start = time.time()
@@ -20,16 +20,14 @@ ask_user()
 complex_calculation()
 print(f'Single thread total time:{time.time() - start}')
 
-
-thread1 = Thread(target = complex_calculation)
-thread2 = Thread(target=ask_user)
+process = Proccess(target=complex_calculation)
+process2 = Proccess(target=complex_calculation)
+process.start()
+process2.start()
 
 start = time.time()
 
-thread1.start()
-thread2.start()
+process.join()
+process2.join()
 
-thread1.join()
-thread2.join()
-
-print(f'Two thread total time: {time.time() - start}')
+print(f'Two process total time:{time.time() - start}')
