@@ -5,6 +5,7 @@ from threading import Thread
 
 counter = 0
 
+
 def increment_counter():
     global counter
     time.sleep(random.random())

@@ -3,6 +3,7 @@ def countdown(n):
         yield n
         n -= 1
 
+
 tasks = [countdown(10), countdown(20), countdown(30)]
 
 while tasks:
